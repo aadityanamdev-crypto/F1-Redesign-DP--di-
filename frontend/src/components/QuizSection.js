@@ -15,59 +15,65 @@ export const QuizSection = ({ quizId, onClose }) => {
   const [loading, setLoading] = useState(true);
   const { user } = useAuth();
 
+  // ✅ SINGLE useEffect (FIXED)
   useEffect(() => {
-  const demoQuiz = {
-    title: "F1 Basics Quiz",
-    questions: [
-      {
-        id: 1,
-        question: "How many teams are there in Formula 1?",
-        options: ["8", "10", "12", "14"]
-      },
-      {
-        id: 2,
-        question: "What does F1 stand for?",
-        options: ["Fast 1", "Formula One", "First Race", "Final Lap"]
-      }
-    ]
-  };
+    const demoQuiz = {
+      title: "F1 Basics Quiz",
+      questions: [
+        {
+          id: 1,
+          question: "How many teams are there in Formula 1?",
+          options: ["8", "10", "12", "14"],
+          correct: "10"
+        },
+        {
+          id: 2,
+          question: "What does F1 stand for?",
+          options: ["Fast 1", "Formula One", "First Race", "Final Lap"],
+          correct: "Formula One"
+        }
+      ]
+    };
 
-  setQuiz(demoQuiz);
-  setLoading(false);
-}, []);
+    setQuiz(demoQuiz);
+    setLoading(false);
+  }, []);
 
+  // ✅ FIXED HANDLE ANSWER
   const handleAnswer = () => {
     if (!selectedAnswer) return;
-    
+
     const newAnswers = [
-      ...answers, 
-      { 
-        quiz_id: quizId, 
-        question_id: quiz.questions[currentQuestion].id, 
-        answer: selectedAnswer 
+      ...answers,
+      {
+        question_id: quiz.questions[currentQuestion].id,
+        answer: selectedAnswer
       }
     ];
+
     setAnswers(newAnswers);
 
     if (currentQuestion < quiz.questions.length - 1) {
       setCurrentQuestion(prev => prev + 1);
       setSelectedAnswer(null);
     } else {
-      submitQuiz(newAnswers);
-    }
-  };
+      // ✅ DUMMY RESULT (NO BACKEND)
+      const correctCount = newAnswers.filter((ans, i) =>
+        ans.answer === quiz.questions[i].correct
+      ).length;
 
-  const submitQuiz = async (finalAnswers) => {
-    try {
-      const { data } = await axios.post(
-        `${BACKEND_URL}/api/quizzes/${quizId}/submit`,
-        finalAnswers,
-        { withCredentials: true }
-      );
-      setResults(data);
+      const score = Math.round((correctCount / quiz.questions.length) * 100);
+
+      setResults({
+        score,
+        results: newAnswers.map((ans, i) => ({
+          question_id: quiz.questions[i].id,
+          correct: ans.answer === quiz.questions[i].correct,
+          correct_answer: quiz.questions[i].correct
+        }))
+      });
+
       setShowResult(true);
-    } catch (error) {
-      console.error('Error submitting quiz:', error);
     }
   };
 
@@ -79,21 +85,10 @@ export const QuizSection = ({ quizId, onClose }) => {
     setResults(null);
   };
 
-  if (loading) {
+  if (loading || !quiz) {
     return (
       <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center">
         <div className="animate-spin w-8 h-8 border-2 border-[#E10600] border-t-transparent rounded-full" />
-      </div>
-    );
-  }
-
-  if (!quiz) {
-    return (
-      <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center">
-        <div className="text-center">
-          <p className="text-zinc-400 mb-4">Quiz not found</p>
-          <button onClick={onClose} className="btn-secondary">Go Back</button>
-        </div>
       </div>
     );
   }
@@ -105,6 +100,7 @@ export const QuizSection = ({ quizId, onClose }) => {
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
       <div className="w-full max-w-2xl">
+
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
@@ -115,16 +111,12 @@ export const QuizSection = ({ quizId, onClose }) => {
               </div>
             )}
           </div>
-          <button 
-            onClick={onClose}
-            className="text-zinc-500 hover:text-white"
-            data-testid="quiz-close"
-          >
+          <button onClick={onClose} className="text-zinc-500 hover:text-white">
             ✕
           </button>
         </div>
 
-        {/* Progress Bar */}
+        {/* Progress */}
         {!showResult && (
           <div className="progress-bar mb-8">
             <div 
@@ -135,87 +127,39 @@ export const QuizSection = ({ quizId, onClose }) => {
         )}
 
         {showResult ? (
-          /* Results */
-          <div className="text-center animate-fade-in">
-            <div className="mb-8">
-              <Trophy 
-                size={64} 
-                className={results.score >= 80 ? 'text-[#FFD700] mx-auto' : results.score >= 50 ? 'text-[#C0C0C0] mx-auto' : 'text-zinc-500 mx-auto'}
-              />
-              <div className="font-display text-6xl mt-4" style={{ color: '#E10600' }}>
-                {results.score}%
-              </div>
-              <p className="text-zinc-400 mt-2">
-                {results.score >= 80 ? 'Excellent! You\'re ready for race day!' : 
-                 results.score >= 50 ? 'Good effort! Keep learning!' : 
-                 'Don\'t worry, review the material and try again!'}
-              </p>
+          <div className="text-center">
+            <Trophy size={64} className="text-[#FFD700] mx-auto" />
+            <div className="text-6xl mt-4 text-[#E10600]">
+              {results.score}%
             </div>
 
-            {/* Answer Review */}
-            <div className="space-y-4 mb-8 text-left">
-              {results.results.map((result, index) => (
-                <div 
-                  key={result.question_id}
-                  className={`p-4 border ${result.correct ? 'border-green-500/50 bg-green-500/10' : 'border-red-500/50 bg-red-500/10'}`}
-                >
-                  <div className="flex items-start gap-3">
-                    {result.correct ? (
-                      <CheckCircle className="text-green-500 flex-shrink-0" size={20} />
-                    ) : (
-                      <XCircle className="text-red-500 flex-shrink-0" size={20} />
-                    )}
-                    <div>
-                      <p className="text-sm text-zinc-300">
-                        Q{index + 1}: {quiz.questions[index].question}
-                      </p>
-                      {!result.correct && (
-                        <p className="text-xs text-green-500 mt-1">
-                          Correct: {result.correct_answer}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex gap-4 justify-center">
-              <button 
-                onClick={resetQuiz}
-                data-testid="quiz-retry"
-                className="btn-secondary flex items-center gap-2"
-              >
-                <RotateCcw size={18} />
-                Try Again
+            <div className="flex gap-4 justify-center mt-6">
+              <button onClick={resetQuiz} className="btn-secondary">
+                <RotateCcw size={18} /> Retry
               </button>
-              <button 
-                onClick={onClose}
-                data-testid="quiz-finish"
-                className="btn-primary"
-              >
+              <button onClick={onClose} className="btn-primary">
                 Finish
               </button>
             </div>
           </div>
         ) : (
-          /* Question */
-          <div className="animate-fade-in">
+          <div>
             <h3 className="text-xl mb-6">
               {quiz.questions[currentQuestion].question}
             </h3>
-            
+
             <div className="space-y-3 mb-8">
               {quiz.questions[currentQuestion].options.map((option, index) => (
                 <button
                   key={index}
                   onClick={() => setSelectedAnswer(option)}
-                  data-testid={`quiz-option-${index}`}
                   className={`quiz-option w-full text-left ${
                     selectedAnswer === option ? 'selected' : ''
                   }`}
                 >
-                  <span className="text-[#E10600] mr-3">{String.fromCharCode(65 + index)}.</span>
+                  <span className="text-[#E10600] mr-3">
+                    {String.fromCharCode(65 + index)}.
+                  </span>
                   {option}
                 </button>
               ))}
@@ -224,62 +168,15 @@ export const QuizSection = ({ quizId, onClose }) => {
             <button
               onClick={handleAnswer}
               disabled={!selectedAnswer}
-              data-testid="quiz-next"
-              className={`btn-primary w-full flex items-center justify-center gap-2 ${
-                !selectedAnswer ? 'opacity-50 cursor-not-allowed' : ''
-              }`}
+              className="btn-primary w-full"
             >
-              {currentQuestion < quiz.questions.length - 1 ? (
-                <>Next Question <ChevronRight size={18} /></>
-              ) : (
-                'Submit Quiz'
-              )}
+              {currentQuestion < quiz.questions.length - 1
+                ? "Next Question"
+                : "Submit Quiz"}
             </button>
           </div>
         )}
       </div>
     </div>
-  );
-};
-
-export const QuizTrigger = ({ onStartQuiz }) => {
-  return (
-    <section className="section bg-black border-y border-white/10">
-      <div className="max-w-7xl mx-auto text-center">
-        <div className="text-xs uppercase tracking-[0.2em] font-bold text-[#E10600] mb-2">
-          Test Your Knowledge
-        </div>
-        <h2 className="font-display text-4xl md:text-5xl mb-4">
-          READY FOR A QUIZ?
-        </h2>
-        <p className="text-zinc-400 mb-8 max-w-xl mx-auto">
-          Put your F1 knowledge to the test with our interactive quizzes
-        </p>
-        
-        <div className="flex flex-wrap justify-center gap-4">
-          <button 
-            onClick={() => onStartQuiz('basics')}
-            data-testid="start-basics-quiz"
-            className="btn-primary"
-          >
-            F1 Basics Quiz
-          </button>
-          <button 
-            onClick={() => onStartQuiz('flags')}
-            data-testid="start-flags-quiz"
-            className="btn-secondary"
-          >
-            Racing Flags Quiz
-          </button>
-          <button 
-            onClick={() => onStartQuiz('strategy')}
-            data-testid="start-strategy-quiz"
-            className="btn-secondary"
-          >
-            Strategy Quiz
-          </button>
-        </div>
-      </div>
-    </section>
   );
 };
