@@ -1,0 +1,441 @@
+/* ============================= */
+/* F1 CUSTOM FONTS */
+/* ============================= */
+
+@font-face {
+  font-family: 'F1-Wide';
+  src: url('../public/fonts/Formula1-Wide.ttf');
+}
+
+@font-face {
+  font-family: 'F1-Black';
+  src: url('../public/fonts/Formula1-Black.ttf');
+}
+
+@font-face {
+  font-family: 'F1-Bold';
+  src: url('../public/fonts/Formula1-Bold_web.ttf');
+}
+
+@font-face {
+  font-family: 'F1-Regular';
+  src: url('../public/fonts/Formula1-Regular-1.ttf');
+}
+
+/* ============================= */
+/* GOOGLE FONT */
+/* ============================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700&display=swap');
+
+/* ============================= */
+/* ROOT VARIABLES */
+/* ============================= */
+
+:root {
+  --f1-red: #E10600;
+  --f1-black: #000000;
+  --f1-text-primary: #FFFFFF;
+  --f1-text-secondary: #A1A1AA;
+
+  --font-display: 'F1-Wide', sans-serif;
+  --font-heading: 'F1-Black', sans-serif;
+  --font-sub: 'F1-Bold', sans-serif;
+  --font-body: 'Titillium Web', sans-serif;
+}
+
+/* ============================= */
+/* RESET */
+/* ============================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ============================= */
+/* BASE */
+/* ============================= */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--f1-black);
+  color: var(--f1-text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================= */
+/* TYPOGRAPHY SYSTEM */
+/* ============================= */
+
+h1 {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-family: var(--font-heading);
+}
+
+h3 {
+  font-family: var(--font-sub);
+}
+
+h4, h5 {
+  font-family: 'F1-Regular';
+}
+
+p, span, button {
+  font-family: var(--font-body);
+}
+
+/* ============================= */
+/* BASIC F1 UI */
+/* ============================= */
+
+button {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+}
+
+/* ============================= */
+/* TAILWIND */
+/* ============================= */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* F1 Brand Colors */
+  --f1-red: #E10600;
+  --f1-red-hover: #FF1801;
+  --f1-red-glow: rgba(225, 6, 0, 0.5);
+  --f1-black: #000000;
+  --f1-surface: #09090B;
+  --f1-surface-elevated: #18181B;
+  --f1-border: rgba(255, 255, 255, 0.1);
+  --f1-text-primary: #FFFFFF;
+  --f1-text-secondary: #A1A1AA;
+  --f1-text-muted: #71717A;
+  
+  /* Typography - F1 System */
+  --font-display: 'F1', sans-serif; /* F1-style display font */
+  --font-body: 'Titillium Web', sans-serif; /* Functional font */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: var(--f1-black);
+  color: var(--f1-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ============================================
+   TYPOGRAPHY HIERARCHY
+   ============================================ */
+
+
+
+/* H1 - Hero */
+h1, .h1, .display-heading {
+  font-family: 'F1-Wide';
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+}
+
+/* H2 - Section Titles */
+h2, .h2, .section-heading {
+  font-family: 'F1-Bold';
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+}
+
+/* H3 - Subheadings */
+h3, .h3, .sub-heading {
+  font-family: 'F1-Regular';
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.3;
+}
+
+/* H4, H5 */
+h4, h5 {
+  font-family: 'F1-Regular';
+  font-weight: 400;
+}
+
+/* Body */
+p, .body-text {
+  font-family: 'Titillium Web', sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Small text */
+small, .text-small {
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 0.85rem;
+}
+
+
+/* Labels & Captions */
+.label, .caption {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* UI Elements - Buttons, Nav */
+.ui-text, button, .btn {
+  font-family: var(--font-body);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Display Numbers - F1 Style */
+.display-number {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--f1-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--f1-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--f1-red);
+}
+
+/* Selection */
+::selection {
+  background: var(--f1-red);
+  color: white;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 4%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 0 97% 44%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 9%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 9%;
+    --muted-foreground: 0 0% 64%;
+    --accent: 0 97% 44%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 97% 44%;
+    --radius: 0;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-red {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(225, 6, 0, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(225, 6, 0, 0);
+  }
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.6s ease-out forwards;
+}
+
+.animate-slide-in-up {
+  animation: slideInUp 0.6s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-pulse-red {
+  animation: pulse-red 2s infinite;
+}
+
+/* Stagger children animations */
+.stagger-children > * {
+  opacity: 0;
+  animation: slideInUp 0.5s ease-out forwards;
+}
+
+.stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.6s; }
+
+/* Glass morphism */
+.glass {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Red glow effect */
+.red-glow {
+  box-shadow: 0 0 30px rgba(225, 6, 0, 0.3);
+}
+
+/* ============================================
+   F1 COMPONENT STYLES
+   ============================================ */
+
+/* Card hover effects */
+.f1-card {
+  background: var(--f1-surface);
+  border: 1px solid var(--f1-border);
+  transition: all 0.3s ease;
+}
+
+.f1-card:hover {
+  border-color: rgba(225, 6, 0, 0.5);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(225, 6, 0, 0.15);
+}
+
+/* Flag colors */
+.flag-yellow { background-color: #FFD700; }
+.flag-green { background-color: #00FF00; }
+.flag-blue { background-color: #0000FF; }
+.flag-red { background-color: #E10600; }
+.flag-black { background-color: #000000; }
+.flag-white { background-color: #FFFFFF; }
+.flag-checkered { 
+  background: repeating-conic-gradient(#000 0% 25%, #fff 0% 50%);
+  background-size: 20px 20px;
+}
+
+/* Tyre colors */
+.tyre-soft { color: #E10600; }
+.tyre-medium { color: #FFD700; }
+.tyre-hard { color: #FFFFFF; }
+.tyre-intermediate { color: #00FF00; }
+.tyre-wet { color: #0066FF; }
+
+@layer base {
+  h1 {
+    font-family: 'F1-bold' !important;
+  }
+
+  h2 {
+    font-family: 'F1-bold' !important;
+  }
+
+  h3 {
+    font-family: 'F1-bold' !important;
+  }
+
+  h4, h5 {
+    font-family: 'F1-bold' !important;
+  }
+
+  p, span, button {
+    font-family: 'F1-regular', sans-serif !important;
+  }
+}
+/* REMOVE EMERGENT BADGE */
+iframe,
+.emergent,
+[data-emergent],
+[class*="emergent"] {
+  display: none !important;
+}/* FORCE F1 REGULAR FOR HERO RED TEXT */
+.hero-section h1 span {
+  font-family: 'F1-Regular' !important;
+}

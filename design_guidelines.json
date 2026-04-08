@@ -1,0 +1,157 @@
+{
+  "theme_and_archetype": {
+    "domain": "Formula One Educational Website",
+    "theme": "dark",
+    "archetype": "Archetype 2 (The Performance Pro)",
+    "description": "High-energy, command-center focus. Tactical minimalism with deep black backgrounds, high-contrast pure white text, and aggressive electric red highlights (F1 Red). Focuses on speed, precision, and elite athleticism."
+  },
+  "typography": {
+    "headings": {
+      "font_family": "Bebas Neue",
+      "weights": ["400"],
+      "description": "Massive, condensed sans-serif for extreme impact and a high-speed athletic aesthetic.",
+      "letter_spacing": "tracking-normal",
+      "text_transform": "uppercase"
+    },
+    "body": {
+      "font_family": "Manrope",
+      "weights": ["400", "500", "700"],
+      "description": "Clean, highly readable geometric sans-serif for technical data, rules, and telemetry stats.",
+      "letter_spacing": "tracking-wide"
+    },
+    "scale": {
+      "h1": "text-6xl md:text-8xl lg:text-[10vw] leading-none tracking-tight",
+      "h2": "text-4xl md:text-5xl lg:text-7xl leading-none",
+      "h3": "text-2xl md:text-3xl leading-tight",
+      "body_large": "text-lg md:text-xl leading-relaxed text-zinc-300",
+      "body": "text-base leading-relaxed text-zinc-400",
+      "small_label": "text-xs md:text-sm uppercase tracking-[0.2em] font-bold text-red-500"
+    }
+  },
+  "color_palette": {
+    "base": {
+      "background": "#000000",
+      "surface": "#09090B",
+      "surface_elevated": "#18181B",
+      "border": "rgba(255, 255, 255, 0.1)"
+    },
+    "text": {
+      "primary": "#FFFFFF",
+      "secondary": "#A1A1AA",
+      "muted": "#71717A"
+    },
+    "brand": {
+      "primary": "#E10600",
+      "primary_hover": "#FF1801",
+      "primary_glow": "rgba(225, 6, 0, 0.5)"
+    },
+    "flags": {
+      "yellow": "#FFD700",
+      "green": "#00FF00",
+      "blue": "#0000FF",
+      "red": "#E10600",
+      "black": "#000000",
+      "white": "#FFFFFF",
+      "checkered": "repeating-conic-gradient(#000 0% 25%, #fff 0% 50%)"
+    }
+  },
+  "layout_and_spacing": {
+    "general": {
+      "padding": "p-6 md:p-12 lg:p-24",
+      "container": "max-w-[100vw] overflow-x-hidden",
+      "section_gap": "gap-24 md:gap-32"
+    },
+    "grid_modes": {
+      "bento_marketing": "grid grid-cols-1 md:grid-cols-8 lg:grid-cols-12 gap-6",
+      "dense_data": "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+    },
+    "corners": "rounded-none md:rounded-sm",
+    "borders": "border border-white/10 hover:border-white/30 transition-colors"
+  },
+  "surface_strategies": {
+    "cards": "bg-zinc-950 border border-white/5 hover:border-red-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(225,6,0,0.15)]",
+    "glassmorphism": "bg-black/80 backdrop-blur-xl border-b border-white/10 saturate-150",
+    "technical_lines": "relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:bg-gradient-to-r after:from-red-500 after:to-transparent"
+  },
+  "motion_and_interactions": {
+    "hover_states": {
+      "buttons": "hover:bg-red-600 hover:text-white transform hover:scale-[1.02] active:scale-[0.98] transition-all",
+      "links": "hover:text-red-500 transition-colors",
+      "driver_cards": "group-hover:grayscale-0 grayscale transition-all duration-500"
+    },
+    "scroll_effects": "Use framer-motion for staggered entrance of grid items (opacity 0 to 1, y: 20 to 0).",
+    "timeline": "Horizontal scroll or vertical line that fills with red as user scrolls down.",
+    "accessibility": "Ensure all motion respects prefers-reduced-motion media query."
+  },
+  "component_guidelines": {
+    "navigation": {
+      "type": "Sticky Glass Header",
+      "classes": "fixed top-0 w-full z-50 bg-black/80 backdrop-blur-xl border-b border-white/10 px-6 py-4 flex justify-between items-center"
+    },
+    "hero": {
+      "layout": "Full viewport height. Massive typography overlay.",
+      "background": "Dark overlay (bg-black/60) over high-speed racing image.",
+      "typography": "H1 should break the grid, extending aggressively across the screen. Optional: Red laser line tracing across."
+    },
+    "sections": [
+      {
+        "id": "basics",
+        "title": "F1 Basics",
+        "layout": "Bento Grid Protocol. Asymmetrical cards defining concepts like 'DRS', 'Downforce', 'Halo'."
+      },
+      {
+        "id": "race_weekend",
+        "title": "Race Weekend Flow",
+        "layout": "Timeline / Horizontal Flow. Use Shadcn Tabs or custom Framer Motion vertical timeline connecting Practice -> Qualifying -> Race."
+      },
+      {
+        "id": "rules_flags",
+        "title": "Rules & Flags",
+        "layout": "Grid layout. Cards representing each flag. On hover, the card background shifts heavily to the flag's color (e.g., bright yellow, solid red) and text turns black for contrast if needed."
+      },
+      {
+        "id": "strategy",
+        "title": "Tyre Strategy",
+        "layout": "Infographic style. Use Shadcn HoverCards or Accordions to explain Soft (Red), Medium (Yellow), Hard (White), Wet (Blue), Inter (Green) tyres."
+      },
+      {
+        "id": "teams_drivers",
+        "title": "2025/2026 Grid",
+        "layout": "Dense Data grid. 20 drivers. High-contrast B&W photos that colorize on hover. Prominent typography for car numbers."
+      }
+    ],
+    "shadcn_customization": {
+      "tabs": "Override default rounded borders. Use square edges, red active states, transparent inactive states with white text.",
+      "cards": "Remove default white background. Use bg-zinc-950, square corners, 1px white/10 border.",
+      "buttons": "Square corners, pure red (#E10600) bg, pure white text, uppercase bold font.",
+      "accordion": "Border-b only, no side borders, white text, red chevron."
+    }
+  },
+  "accessibility_and_testing": {
+    "contrast": "Maintain WCAG AA minimum. Use text-shadow if placing text over images.",
+    "data_testid": "MANDATORY on all interactive elements. e.g., 'hero-cta-button', 'driver-card-44', 'flag-yellow-info'."
+  },
+  "media": {
+    "hero_background": {
+      "url": "https://images.unsplash.com/photo-1774487671620-b9174d206849?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzZ8MHwxfHNlYXJjaHwxfHxmb3JtdWxhJTIwMSUyMHJhY2luZyUyMGNhciUyMHRyYWNrfGVufDB8fHx8MTc3NTU1NTAzOXww&ixlib=rb-4.1.0&q=85",
+      "description": "F1 race car speeding around a track. Use with a black/60 gradient overlay."
+    },
+    "texture_carbon": {
+      "url": "https://images.unsplash.com/photo-1763075958748-9a0c9c8799c3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NjZ8MHwxfHNlYXJjaHwzfHxkYXJrJTIwY2FyYm9uJTIwZmliZXIlMjB0ZXh0dXJlfGVufDB8fHx8MTc3NTU1NTA0Nnww&ixlib=rb-4.1.0&q=85",
+      "description": "Dark carbon fiber geometric pattern. Use as a subtle background texture for the Basics or Strategy section."
+    },
+    "tyre_strategy": {
+      "url": "https://images.unsplash.com/photo-1758739956764-84aa7f529a22?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTB8MHwxfHNlYXJjaHwyfHxyYWNpbmclMjB0eXJlJTIwcmFpbnxlbnwwfHx8fDE3NzU1NTUwNDZ8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Close up of a racing tyre in smoke/rain. Use in the Tyre Strategy section alongside infographics."
+    },
+    "neon_speed_abstract": {
+      "url": "https://images.pexels.com/photos/18545023/pexels-photo-18545023.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "description": "Dynamic abstract red neon lights. Use for transition blocks, footers, or hover states for high-speed effect."
+    },
+    "driver_helmet": {
+      "url": "https://images.unsplash.com/photo-1748019156345-64162e5b877e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzR8MHwxfHNlYXJjaHwxfHxmb3JtdWxhJTIwMSUyMGRyaXZlciUyMGhlbG1ldHxlbnwwfHx8fDE3NzU1NTUwMzl8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Racing helmet. Use in the Quick Guide or Auth section."
+    }
+  },
+  "icons_library": "lucide-react"
+}

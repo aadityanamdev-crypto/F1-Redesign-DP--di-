@@ -1,0 +1,325 @@
+/* F1 Learning Hub - App Component Styles */
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.4);
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.9));
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+}
+
+/* ============================================
+   SECTION STYLES
+   ============================================ */
+
+.section {
+  padding: 5rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 6rem 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding: 8rem 6rem;
+  }
+}
+
+/* ============================================
+   TYPOGRAPHY UTILITY CLASSES
+   ============================================ */
+
+/* Display Heading - F1 Style (Hero/H1) */
+.font-display {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+/* Body/Functional Font */
+.font-body {
+  font-family: var(--font-body);
+}
+
+/* ============================================
+   BUTTON STYLES
+   ============================================ */
+
+.btn-primary {
+  background: var(--f1-red);
+  color: white;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.875rem 2rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: var(--f1-red-hover);
+  transform: scale(1.02);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: white;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.875rem 2rem;
+  border: 1px solid var(--f1-border);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  border-color: var(--f1-red);
+  color: var(--f1-red);
+}
+
+/* ============================================
+   INPUT STYLES
+   ============================================ */
+
+.f1-input {
+  background: var(--f1-surface);
+  border: 1px solid var(--f1-border);
+  color: white;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.9375rem;
+  transition: border-color 0.2s ease;
+}
+
+.f1-input:focus {
+  outline: none;
+  border-color: var(--f1-red);
+}
+
+.f1-input::placeholder {
+  color: var(--f1-text-muted);
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+
+.nav-link {
+  position: relative;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--f1-text-secondary);
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: var(--f1-text-primary);
+}
+
+.nav-link.active {
+  color: var(--f1-red);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--f1-red);
+  transition: width 0.2s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* ============================================
+   DRIVER CARDS
+   ============================================ */
+
+.driver-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--f1-surface);
+  border: 1px solid var(--f1-border);
+  transition: all 0.3s ease;
+}
+
+.driver-card:hover {
+  border-color: rgba(225, 6, 0, 0.5);
+  transform: translateY(-4px);
+}
+
+.driver-number {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  line-height: 1;
+  opacity: 0.2;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+/* ============================================
+   FLAG CARDS
+   ============================================ */
+
+.flag-card {
+  position: relative;
+  padding: 1.5rem;
+  background: var(--f1-surface);
+  border: 1px solid var(--f1-border);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.flag-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.flag-card:hover::before {
+  width: 100%;
+  opacity: 0.2;
+}
+
+/* ============================================
+   TYRE DISPLAY
+   ============================================ */
+
+.tyre-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 8px solid currentColor;
+  background: var(--f1-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.tyre-circle:hover {
+  transform: rotate(180deg);
+}
+
+/* ============================================
+   QUIZ STYLES
+   ============================================ */
+
+.quiz-option {
+  padding: 1rem 1.5rem;
+  background: var(--f1-surface);
+  border: 1px solid var(--f1-border);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--font-body);
+  font-weight: 400;
+}
+
+.quiz-option:hover {
+  border-color: var(--f1-red);
+  background: rgba(225, 6, 0, 0.1);
+}
+
+.quiz-option.selected {
+  border-color: var(--f1-red);
+  background: rgba(225, 6, 0, 0.2);
+}
+
+.quiz-option.correct {
+  border-color: #00FF00;
+  background: rgba(0, 255, 0, 0.1);
+}
+
+.quiz-option.incorrect {
+  border-color: #FF0000;
+  background: rgba(255, 0, 0, 0.1);
+}
+
+/* ============================================
+   PROGRESS BAR
+   ============================================ */
+
+.progress-bar {
+  height: 4px;
+  background: var(--f1-surface);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--f1-red);
+  transition: width 0.5s ease;
+}
+
+/* ============================================
+   QUICK GUIDE GRID
+   ============================================ */
+
+.quick-guide-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 768px) {
+  .quick-guide-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .quick-guide-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
