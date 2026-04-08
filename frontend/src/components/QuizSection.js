@@ -16,18 +16,25 @@ export const QuizSection = ({ quizId, onClose }) => {
   const { user } = useAuth();
 
   useEffect(() => {
-    const fetchQuiz = async () => {
-      try {
-        const { data } = await axios.get(`${BACKEND_URL}/api/quizzes/${quizId}`);
-        setQuiz(data);
-      } catch (error) {
-        console.error('Error fetching quiz:', error);
-      } finally {
-        setLoading(false);
+  const demoQuiz = {
+    title: "F1 Basics Quiz",
+    questions: [
+      {
+        id: 1,
+        question: "How many teams are there in Formula 1?",
+        options: ["8", "10", "12", "14"]
+      },
+      {
+        id: 2,
+        question: "What does F1 stand for?",
+        options: ["Fast 1", "Formula One", "First Race", "Final Lap"]
       }
-    };
-    fetchQuiz();
-  }, [quizId]);
+    ]
+  };
+
+  setQuiz(demoQuiz);
+  setLoading(false);
+}, []);
 
   const handleAnswer = () => {
     if (!selectedAnswer) return;
